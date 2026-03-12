@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fastify приложение</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #d9d9d9;
+            color: #000;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #bfbfbf;
+        }
+
+        .hint {
+            font-size: 12px;
+            color: #999;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Fastify приложение</h1>
+        <button id="apiButton">Сделать запрос на АПИ</button>
+        <div class="hint">Откройте консоль (F12), чтобы увидеть результат</div>
+    </div>
+
+    <script>
+        document.getElementById('apiButton').addEventListener('click', async () => {
+            try {
+                const response = await fetch('/api');
+                const data = await response.json();
+
+                if (data.message === 'Запрос прошел успешно') {
+                    console.log('Запрос прошел успешно');
+                }
+            } catch (error) {
+                console.error('Ошибка при запросе:', error);
+            }
+        });
+    </script>
+</body>
+</html>
